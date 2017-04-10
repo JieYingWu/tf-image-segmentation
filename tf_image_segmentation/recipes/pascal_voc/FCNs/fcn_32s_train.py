@@ -6,16 +6,19 @@ import os, sys
 # Use second GPU -- change if you want to use a first one
 os.environ["CUDA_VISIBLE_DEVICES"] = '3'
 
+HOME_DIR = '/home/jieying/CIS2/tf-image-segmentation/'
+#home_dir = '/home/ajacob6jwu96/codes/fcn/tf-image-segmentation/tf-image-segmentation'
+
 # Add a path to a custom fork of TF-Slim
 # Get it from here:
 # https://github.com/warmspringwinds/models/tree/fully_conv_vgg
-sys.path.append("/home/ajacob6jwu96/codes/fcn/tf-image-segmentation/models/slim/")
+sys.path.append(HOME_DIR + "models/slim/")
 
 # Add path to the cloned library
-sys.path.append("/home/ajacob6jwu96/codes/fcn/tf-image-segmentation/")
+sys.path.append(HOME_DIR)
 
-checkpoints_dir = "/home/ajacob6jwu96/codes/fcn/tf-image-segmentation/tf_image_segmentation/checkpoint/"
-log_folder = "/home/ajacob6jwu96/codes/fcn/tf-image-segmentation/tf_image_segmentation/log/"
+checkpoints_dir = HOME_DIR + "checkpoint/"
+log_folder = HOME_DIR + "log/"
 
 slim = tf.contrib.slim
 vgg_checkpoint_path = os.path.join(checkpoints_dir, 'vgg_16.ckpt')
@@ -35,7 +38,7 @@ image_train_size = [384, 384]
 number_of_classes = 2
 tfrecord_filename = 'custom_augmented_train.tfrecords'
 pascal_voc_lut = pascal_segmentation_lut()
-class_labels = [0, 1] #pascal_voc_lut.keys()
+class_labels = [0, 1, 255] #pascal_voc_lut.keys()
 samples = 79
 
 
